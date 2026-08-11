@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="wheelGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffb347" />
+      <stop offset="100%" stop-color="#00e5ff" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="24" fill="url(#wheelGrad)" opacity="0.18" />
+  <circle cx="32" cy="32" r="22" stroke="#fff" stroke-width="3" opacity="0.6" />
+  <g stroke="#fff" stroke-width="2" stroke-linecap="round">
+    <line x1="32" y1="10" x2="32" y2="18" />
+    <line x1="32" y1="54" x2="32" y2="46" />
+    <line x1="10" y1="32" x2="18" y2="32" />
+    <line x1="54" y1="32" x2="46" y2="32" />
+    <line x1="16.4" y1="16.4" x2="21.2" y2="21.2" />
+    <line x1="47.6" y1="47.6" x2="42.8" y2="42.8" />
+    <line x1="16.4" y1="47.6" x2="21.2" y2="42.8" />
+    <line x1="47.6" y1="16.4" x2="42.8" y2="21.2" />
+  </g>
+  <circle cx="32" cy="32" r="6" fill="#141d2f" stroke="#fff" stroke-width="2" />
+  <path d="M32 18l5.2 10.5H44l-8.5 6.2 3.3 11L32 40.7 24.2 45.7l3.3-11L19 28.5h6.8L32 18z" fill="#fff" opacity="0.9" />
+</svg>

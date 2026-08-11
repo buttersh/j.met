@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circle Kita — Collective Four Digital Playground</title>
+  <meta name="description" content="Circle Kita: Portal digital kece dari 4 jurusan (TI, PGSD, Sains Data, Farmasi). Ada Spin spot, Deep Talk deck, Urban Map Indonesia, Night Owl Rescue Kit, Spot Vault album, dan banyak lagi!" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Circle Kita — Collective Four" />
+  <meta property="og:description" content="Digital playground dari 4 sahabat beda jurusan. Kocak, kalcer, dan penuh fitur interaktif." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#ffa200" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Leaflet Interactive Map CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <div class="bg-motion-wrapper" aria-hidden="true">
+    <!-- Glow Orbs -->
+    <div class="glow-orb glow-amber"></div>
+    <div class="glow-orb glow-cyan"></div>
+    <div class="glow-orb glow-slate"></div>
+    <div class="glow-orb glow-amber2"></div>
+
+    <!-- Animated Geometric Lines -->
+    <div class="geo-line geo-line-h1"></div>
+    <div class="geo-line geo-line-h2"></div>
+    <div class="geo-line geo-line-v1"></div>
+    <div class="geo-line geo-line-v2"></div>
+
+    <!-- Floating Geometric Shapes -->
+    <div class="geo-shape shape-diamond"></div>
+    <div class="geo-shape shape-ring"></div>
+    <div class="geo-shape shape-ring2"></div>
+    <div class="geo-shape shape-cross"></div>
+
+    <!-- Scan Beam -->
+    <div class="scan-beam"></div>
+
+    <!-- Grid Overlay -->
+    <div class="geo-grid"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand">
+        <span class="brand-accent">J</span>K  
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#about">Us</a>
+        <a href="#circle">Widget</a>
+        <a href="#features">Features</a>
+        <a href="#vault">Archive</a>
+        <a href="#kontak">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container hero-sheet">
+        <div class="hero-tagline">
+          <span class="hero-label">DIGITAL STORIES CIRCLE PORTAL</span>
+          <span class="hero-chip"><span class="pulse-dot"></span> PUBLIC / LIVE</span>
+        </div>
+        <h1>COLLECTIVE FOUR</h1>
+        <p>Web yang didedikasikan untuk menceritakan kisah-kisah unik dari bestie dan menciptakan fitur-fitur yang dapat membantu publik dalam dan mencari tempat nongki, menghitung pengeluaran bersama (split bill), dan lainnya.</p>
+        <br><div class="hero-actions">
+          <a href="#about" class="button primary"> Mengenal KITA</a>
+          <a href="#circle" class="button secondary"> Coba Widget</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toastNotif" class="toast-notif" aria-live="polite"></div>
+    <!-- Scroll to Top -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Kembali ke atas" title="Scroll ke atas">↑</button>
+
+    <!-- About Us / 4 Persona Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">ABOUT US — COLLECTIVE FOUR</p>
+          <h2>Empat Persona Kreatif</h2>
+          <p>Kenalan sama keempat anggota circle kita, yuk! 
+            <br>Kita masing-masing punya keunikan dan bakat khusus yang membuat kita unik. Temen SMA yang udah beda kesibukan tapi masih berteman baik sampe bikin wishlist bareng-bareng. </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Persona 1: TI -->
+          <article class="about-card card-code">
+            <div class="about-card-header">
+              <span class="avatar-box">🎮</span>
+              <div>
+                <span class="about-role">TI • LOGIC &amp; BUILDING</span>
+                <h3 class="about-name" data-member="ti">Rani</h3>
+              </div>
+            </div>  
+            <div class="about-vibe">"Kalau dunia ini coding, saya siap jadi debug-nya — dan kadang juga jadi drama queen-nya."</div>
+            <p class="about-desc">Saya suka ngotak-ngatik masalah sampai ketemu solusi, tapi soal cinta ternyata saya tetap gagal menghubungkan satu titik yang salah. 
+              Di jurusan TI, saya belajar logis dan teliti, tapi hati saya tetap aja suka jalan sendiri — jadi ya, just friend dulu, aman, dan nggak ada drama.</p>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-label">UNDECODED</span>
+                <span class="stat-val">IX KXGZZ 7D5</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">SUPERPOWER</span>
+                <span class="stat-val">Logika cepat &amp; problem solving</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">STATUS</span>
+                <span class="stat-status status-dev">🟢 In Dev Mode</span>
+              </div>
+            </div>
+            <div class="about-socmed">
+              <a href="https://linkedin.com/in/raniels?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="socmed-btn li">💼 LinkedIn</a>
+              <a href="https://instagram.com/aprlla_rani?igsh=MTF0bWNucGEzMG4xbg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="socmed-btn ig">📷 Instagram</a>
+              <a href="https://github.com/buttersh" target="_blank" rel="noopener" class="socmed-btn gh">⚡ GitHub</a>
+              <a href="https://tiktok.com/@earthrow" target="_blank" rel="noopener" class="socmed-btn tk">🎵 TikTok</a>
+              <a href="https://twitter.com/GANTI_TW_PGSD" target="_blank" rel="noopener" class="socmed-btn tw">𝕏 Twitter</a>
+            </div>
+          </article>
+
+          <!-- Persona 2: PGSD -->
+          <article class="about-card card-edu">
+            <div class="about-card-header">
+              <span class="avatar-box">💬</span>
+              <div>
+                <span class="about-role">PGSD • CARE &amp; EDUCATION</span>
+                <h3 class="about-name" data-member="pgsd">Friska</h3>
+              </div>
+            </div>
+            <div class="about-vibe">"Sabar banget, sampai orang yang lagi bete bisa ikut mellow bareng."</div>
+            <p class="about-desc">Saya orang yang suka dengar dan bikin suasana jadi adem, tapi ternyata hati saya sering jadi tempat paling penuh konflik. Di jurusan PGSD, saya belajar sabar dan perhatian, tapi soal cinta saya tetap jadi orang yang suka sama yang nggak sama — jadi ya, gagal lagi, tapi tetap baik-baik saja.</p>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-label">UNDECODED</span>
+                <span class="stat-val">X KZHEFHM 7D5</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">SUPERPOWER</span>
+                <span class="stat-val">Empati &amp; menyenangkan suasana</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">STATUS</span>
+                <span class="stat-status status-talk">☕ Late Night Listener</span>
+              </div>
+            </div>
+            <div class="about-socmed">
+              <a href="https://linkedin.com/in/friska?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="socmed-btn li">💼 LinkedIn</a>
+              <a href="https://instagram.com/friska?igsh=MTF0bWNucGEzMG4xbg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="socmed-btn ig">📷 Instagram</a>
+              <a href="https://github.com/friska" target="_blank" rel="noopener" class="socmed-btn gh">⚡ GitHub</a>
+              <a href="https://tiktok.com/@friska" target="_blank" rel="noopener" class="socmed-btn tk">🎵 TikTok</a>
+              <a href="https://twitter.com/friska" target="_blank" rel="noopener" class="socmed-btn tw">𝕏 Twitter</a>
+            </div>
+          </article>
+
+          <!-- Persona 3: Sains Data -->
+          <article class="about-card card-data">
+            <div class="about-card-header">
+              <span class="avatar-box">🔥</span>
+              <div>
+                <span class="about-role">DATA • ANALYTICS &amp; INSIGHT</span>
+                <h3 class="about-name" data-member="data">Salwa</h3>
+              </div>
+            </div>
+            <div class="about-vibe">"Kalau ada pola, saya bakal nyari sampai nemu penyebabnya — bahkan yang paling nggak disangka."</div>
+            <p class="about-desc">Saya suka lihat detail, cari pola, dan nanya, “kenapa ini bisa terjadi?” Di jurusan Sains Data, saya belajar analitis, tapi soal hati saya tetap nggak bisa memprediksi apa pun. Saya sering nunggu orang dari SMA sampai kuliah, lalu sadar bahwa hubungan itu memang bukan data yang bisa dipaksa masuk ke rumus.</p>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-label">UNDECODED</span>
+                <span class="stat-val">XXXI WZGWX 7D6</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">SUPERPOWER</span>
+                <span class="stat-val">Mencari pola &amp; insight</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">STATUS</span>
+                <span class="stat-status status-data">📍 Wandering Hidden Gems</span>
+              </div>
+            </div>
+            <div class="about-socmed">
+              <a href="https://linkedin.com/in/salwa-zahra-801303325?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="socmed-btn li">💼 LinkedIn</a>
+              <a href="https://instagram.com/slwzaraa_?igsh=MW5vZmk1dGxteTAwcw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="socmed-btn ig">📷 Instagram</a>
+              <a href="https://github.com/Salwaazha" target="_blank" rel="noopener" class="socmed-btn gh">⚡ GitHub</a>
+              <a href="https://tiktok.com/@woopsszoa" target="_blank" rel="noopener" class="socmed-btn tk">🎵 TikTok</a>
+              <a href="https://twitter.com/GANTI_TW_PGSD" target="_blank" rel="noopener" class="socmed-btn tw">𝕏 Twitter</a>
+            </div>
+          </article>
+
+          <!-- Persona 4: Farmasi -->
+          <article class="about-card card-pharma">
+            <div class="about-card-header">
+              <span class="avatar-box">☕</span>
+              <div>
+                <span class="about-role">FARMASI • HEALTH &amp; PRECISION</span>
+                <h3 class="about-name" data-member="farmasi">Brilian</h3>
+              </div>
+            </div>
+            <div class="about-vibe">"Kalau soal kesehatan, saya bukan cuma peduli — saya juga agak overthinking soal tubuh sendiri."</div>
+            <p class="about-desc">Saya orang yang peduli sama kesehatan, kebiasaan, dan hal kecil yang ternyata penting, tapi soal hati saya tetap nggak bisa mengatur semuanya dengan rapi. Di jurusan Farmasi, saya belajar teliti dan disiplin, tapi cinta saya tetap aja berakhir seperti resep yang salah komposisinya — banyak yang bilang “aku ngerti,” padahal semuanya tetap gagal.</p>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-label">UNDECODED</span>
+                <span class="stat-val">XXIII TLOZ 7D6</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">SUPERPOWER</span>
+                <span class="stat-val">Ketelitian &amp; care untuk kesehatan</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">STATUS</span>
+                <span class="stat-status status-health">🧪 Brewing Health Potions</span>
+              </div>
+            </div>
+            <div class="about-socmed">
+              <a href="https://linkedin.com/in/brilian-hildaalia-a789b0428?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" class="socmed-btn li">💼 LinkedIn</a>
+              <a href="https://instagram.com/brilianhilda?igsh=MW80ZXQ0YTByaGFnMA==" target="_blank" rel="noopener" class="socmed-btn ig">📷 Instagram</a>
+              <a href="https://github.com/brilian" target="_blank" rel="noopener" class="socmed-btn gh">⚡ GitHub</a>
+              <a href="https://tiktok.com/@brilianhilaaa" target="_blank" rel="noopener" class="socmed-btn tk">🎵 TikTok</a>
+              <a href="https://twitter.com/brilian" target="_blank" rel="noopener" class="socmed-btn tw">𝕏 Twitter</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Squad Cards Section -->
+    <section id="circle" class="section squad-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">The Crew</p>
+          <h2>4 Kartu Anggota Interaktif</h2>
+          <p>Setiap anggota hadir dengan widget personal yang unik, fun, dan langsung dapat digunakan.</p>
+        </div>
+
+        <div class="squad-grid">
+
+          <!-- 1. Teknik Informatika — Gacha Spin Spot -->
+          <article class="squad-card card-code">
+            <div class="card-top">
+              <span class="pill pill-code">💻 Teknik Informatika</span>
+              <h3>Gacha Spin Spot</h3>
+              <p class="card-desc">Bingung mau nugas atau nongkrong di mana? Masukkan pilihanmu, lalu biarkan spin mengambil keputusan terbaik untuk kamu.</p>
+            </div>
+
+            <div class="spin-options-panel">
+              <div class="spin-options-header">
+                <span class="spin-options-title">🎯 Pilihanmu</span>
+                <span class="spin-options-badge">1 baris = 1 opsi</span>
+              </div>
+              <label for="spinOptionsInput">Tuliskan beberapa pilihan yang sedang kamu pertimbangkan.</label>
+              <textarea id="spinOptionsInput" rows="4" placeholder="Contoh:
+Ngopi di kafe dekat kampus
+Nugas di perpustakaan
+Nonton film di bioskop"></textarea>
+              <p class="spin-options-hint">Isi minimal 2 pilihan agar spin bisa memilih satu solusi tanpa bingung. Kosongkan jika mau rekomendasi otomatis.</p>
+            </div>
+
+            <div class="gacha-result" id="gachaResult">
+              <div class="gacha-placeholder">
+                <img src="images/spin-icon.svg" alt="Spin pilihan" class="gacha-icon" />
+                <span>Putar untuk dapat rekomendasi</span>
+              </div>
+            </div>
+
+            <button id="gachaBtn" class="button tertiary">Putar Pilihan</button>
+          </article>
+
+          <!-- 2. PGSD — Deep Talk Card Deck -->
+          <article class="squad-card card-edu">
+            <div class="card-top">
+              <span class="pill pill-edu">🎓 PGSD</span>
+              <h3>Deep Talk Deck</h3>
+              <p class="card-desc">Dek kartu digital interaktif berisi pertanyaan seru & mind-bending buat obrolan malam ini.</p>
+            </div>
+
+            <div class="card-deck-wrapper">
+              <div class="deep-talk-card" id="deepTalkCard">
+                <div class="card-badge">DEEP TALK DECK</div>
+                <div class="card-content" id="questionOutput">Klik "Tarik Kartu" untuk mendapatkan pertanyaan seru malam ini.</div>
+              </div>
+            </div>
+
+            <button id="icebreakerBtn" class="button tertiary">🎴 Tarik Kartu Pertanyaan</button>
+
+            <div class="deep-talk-controls">
+              <div class="deep-talk-add">
+                <label for="newQuestionInput">➕ Tambah pertanyaan sendiri</label>
+                <textarea id="newQuestionInput" rows="3" placeholder="Contoh: Apa momen paling awkward yang pernah kamu alami saat kita bersama?"></textarea>
+                <button id="addQuestionBtn" class="button tertiary">Tambah Pertanyaan</button>
+                <p class="deep-talk-tip">Pertanyaanmu langsung masuk ke dalam dek internal dan akan ikut muncul saat kamu menarik kartu berikutnya.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Sains Data — The Data Curator & Trend Analyzer -->
+          <article class="squad-card card-data">
+            <div class="card-top">
+              <span class="pill pill-data">📊 Sains Data</span>
+              <h3>The Data Curator &amp; Trend Analyzer</h3>
+              <p class="card-desc">Mengubah kebisingan harian menjadi insight tren musik, playlist terkurasi, dan rekomendasi suasana hati.</p>
+            </div>
+
+            <!-- Spotify Live Sound & Mood Matrix -->
+            <div class="music-panel">
+              <div class="music-grid">
+                <div class="music-left">
+                  <div class="spotify-player-panel">
+                    <div class="spotify-player-header">
+                      <div>
+                        <span class="spotify-player-title">Pilih mood / genre musik</span>
+                        <p class="spotify-player-subtitle">Pilih playlist dengan mood Indonesia yang lagi trending atau atur sendiri playlistmu.</p>
+                      </div>
+                    </div>
+                    <div class="spotify-player-controls">
+                      <a id="spotifyMoodLink" href="https://open.spotify.com" target="_blank" rel="noopener" class="button secondary mini-button spotify-play-btn">Putar</a>
+                      <button id="spotifyMenuToggle" class="button secondary mini-button spotify-menu-toggle">Musik</button>
+                    </div>
+                    <div class="spotify-menu-panel hidden" id="spotifyMenuPanel">
+                      <div class="spotify-menu-group">
+                        <div class="spotify-menu-title">Mood</div>
+                        <button type="button" class="spotify-menu-item" data-mood="happy">Happy Vibe</button>
+                        <button type="button" class="spotify-menu-item" data-mood="cheerful">Semangat</button>
+                        <button type="button" class="spotify-menu-item" data-mood="galau">Galau</button>
+                        <button type="button" class="spotify-menu-item" data-mood="sad">Sad / Chill</button>
+                      </div>
+                      <div class="spotify-menu-group">
+                        <div class="spotify-menu-title">Genre</div>
+                        <button type="button" class="spotify-menu-item" data-mood="dj">DJ / Dance</button>
+                        <button type="button" class="spotify-menu-item" data-mood="hiphop">HipHop</button>
+                        <button type="button" class="spotify-menu-item" data-mood="pop">Pop Hits</button>
+                        <button type="button" class="spotify-menu-item" data-mood="jj">Hot Hits Indonesia</button>
+                      </div>
+                      <div class="spotify-menu-note">
+                        <button id="editPlaylistsBtn" class="button tertiary small">Edit</button>
+                        <button id="autoFillIndoBtn" class="button tertiary small">Tren Indo</button>
+                        <button id="resetPlaylistsBtn" class="button ghost small">Reset</button>
+                        <p>Tempel URL playlist embed Spotify untuk tiap kategori, atau gunakan default tren Indo.</p>
+                      </div>
+                    </div>
+                    <div class="spotify-embed-wrapper">
+                      <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/3n3Ppam7vgaVa1iaRUc9Lp" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="music-right">
+                  <div class="music-header">
+                    <div class="music-meta">
+                      <span class="music-now">🟢 Spotify Live: <strong id="nowPlayingTrack">Neon Pulse — Circle Mix ⚡</strong></span>
+                      <a id="spotifyTrackLink" href="https://open.spotify.com/search/Neon%20Pulse%20Circle%20Mix" target="_blank" rel="noopener" class="button secondary mini-button">Buka</a>
+                    </div>
+                    <div class="equalizer" id="equalizerVisual">
+                      <span class="bar bar-1"></span>
+                      <span class="bar bar-2"></span>
+                      <span class="bar bar-3"></span>
+                      <span class="bar bar-4"></span>
+                    </div>
+                  </div>
+
+                  <!-- Circle Audio DNA Visualizer -->
+                  <div class="audio-dna">
+                    <span class="dna-title">CIRCLE AUDIO DNA MINGGU INI</span>
+                    <div class="dna-bars">
+                      <div class="dna-segment chill" style="width: 70%;" title="70% Chill Indie">70% Chill</div>
+                      <div class="dna-segment pop" style="width: 20%;" title="20% Hyperpop">20% Hyper</div>
+                      <div class="dna-segment lofi" style="width: 10%;" title="10% Lofi">10% Lofi</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Public Micro-Polls removed per user request -->
+          </article>
+
+          <!-- 4. Farmasi — Night Owl Rescue Kit -->
+          <article class="squad-card card-pharma">
+            <div class="card-top">
+              <span class="pill pill-pharma">🧪 Farmasi</span>
+              <h3>Night Owl Rescue Kit</h3>
+              <p class="card-desc">Masukkan kondisi lembur malam ini dan dapatkan rekomendasi racikan hidup sehat dari ahlinya.</p>
+            </div>
+
+            <form id="sleepForm" class="rescue-form">
+              <div class="rescue-sliders">
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="studyHours">⏰ Jam Lembur</label>
+                    <span class="slider-val" id="hoursVal">3 jam</span>
+                  </div>
+                  <input type="range" id="studyHours" min="1" max="12" value="3" class="range-slider" />
+                </div>
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="coffeeCups">☕ Gelas Kopi</label>
+                    <span class="slider-val" id="cupsVal">1 gelas</span>
+                  </div>
+                  <input type="range" id="coffeeCups" min="0" max="6" value="1" class="range-slider" />
+                </div>
+              </div>
+              <button type="submit" class="button tertiary">🧪 Dapatkan Rescue Kit</button>
+            </form>
+
+            <div class="rescue-output" id="sleepOutput" style="display:none;"></div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Public Features Section -->
+    <section id="features" class="section features-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">FEATURES FOR THE ALL</p>
+          <h2>Fitur Publik Untuk Semua</h2>
+          <p>Tools interaktif, peta rekomendasi terkurasi Data Science, Q&amp;A anonim 4 jurusan, dan guestbook sticker board.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1: CALC SHARE (with Data Stat Insight) -->
+          <article class="feature-card feature-calculator">
+            <div class="feature-header">
+              <span class="feature-tag">CALC SHARE</span>
+              <h3>Hitung Patungan Jujur</h3>
+              <p>Kalkulasi total bill, pajak, service charge, dan porsi individual tanpa drama.</p>
+            </div>
+            
+            <form id="calcShareForm" class="mini-form">
+              <div class="form-grid-2">
+                <div>
+                  <label for="totalBill">Total Biaya (Rp)</label>
+                  <input type="number" id="totalBill" min="0" value="150000" />
+                </div>
+                <div>
+                  <label for="peopleCount">Jumlah Orang</label>
+                  <input type="number" id="peopleCount" min="1" value="4" />
+                </div>
+              </div>
+              <div class="form-grid-2">
+                <div>
+                  <label for="taxRate">Pajak (%)</label>
+                  <input type="number" id="taxRate" min="0" value="10" />
+                </div>
+                <div>
+                  <label for="serviceRate">Service (%)</label>
+                  <input type="number" id="serviceRate" min="0" value="5" />
+                </div>
+              </div>
+              <button type="submit" class="button tertiary">💸 Hitung Patungan</button>
+            </form>
+
+            <div class="widget-output" id="calcShareResult">Hasil kalkulasi patungan akan muncul di sini.</div>
+
+            <div class="calc-share-subfeatures">
+              <div class="calc-chip" id="calcMoodChip">💸 Siap patungan</div>
+              <div class="calc-mini-card">
+                <span class="calc-mini-label">Per orang</span>
+                <strong id="calcPerPerson">Rp 0</strong>
+              </div>
+              <div class="calc-mini-card">
+                <span class="calc-mini-label">Tips hemat</span>
+                <strong id="calcBudgetTip">Cek dulu sebelum makan besar</strong>
+              </div>
+            </div>
+
+            <div class="mini-note-card">
+              <span>💡</span>
+              <p>Kalau hasilnya pas, berarti kalian bisa lanjut nongkrong tanpa drama finansial — lalu cari tempat favorit lewat Urban Map setelah puas patungan.</p>
+            </div>
+            <div class="data-stat-insight" id="calcStatInsight">
+              📊 <strong>Data Stat Insight:</strong> Rata-rata patungan circle hemat hingga 15% jika service charge dihitung akurat!
+            </div>
+          </article>
+
+          <!-- Feature 2: URBAN MAP (Real Data Indonesia Map & Review System) -->
+          <article class="feature-card feature-map">
+            <div class="feature-header">
+              <span class="feature-tag">URBAN MAP INDONESIA</span>
+              <h3>Peta Rekomendasi Real Data</h3>
+              <p>Peta interaktif spot WFC, hidden gem, &amp; thrifting asli di Indonesia dengan rating &amp; ulasan riil.</p>
+            </div>
+            
+            <!-- Leaflet Interactive Map Canvas -->
+            <div id="indonesiaMap" class="real-map-container" style="height: 250px; border-radius: var(--radius-md); margin-bottom: 1rem; border: 1px solid var(--border-glass); z-index: 1;"></div>
+
+            <!-- Live Search Box for All Indonesia -->
+            <div class="map-search-bar" style="margin-bottom: 0.8rem;">
+              <input type="text" id="searchSpotInput" placeholder="🔍 Cari kota atau tempat di Indonesia (misal: Surabaya, Malang, Medan, Makassar)..." />
+            </div>
+
+            <!-- Map Filter Controls -->
+            <div class="map-controls-row">
+              <select id="cityFilterSelect" class="poll-select" aria-label="Filter Kota Seluruh Indonesia">
+                <option value="all">🇮🇩 Seluruh Indonesia</option>
+                <optgroup label="Jawa & Bali">
+                  <option value="Jakarta">📍 Jakarta</option>
+                  <option value="Bandung">📍 Bandung</option>
+                  <option value="Surabaya">📍 Surabaya</option>
+                  <option value="Yogyakarta">📍 Yogyakarta</option>
+                  <option value="Malang">📍 Malang</option>
+                  <option value="Semarang">📍 Semarang</option>
+                  <option value="Solo">📍 Solo</option>
+                  <option value="Bali">📍 Bali / Denpasar</option>
+                </optgroup>
+                <optgroup label="Sumatra">
+                  <option value="Medan">📍 Medan</option>
+                  <option value="Palembang">📍 Palembang</option>
+                  <option value="Padang">📍 Padang</option>
+                  <option value="Lampung">📍 Bandar Lampung</option>
+                  <option value="Pekanbaru">📍 Pekanbaru</option>
+                </optgroup>
+                <optgroup label="Kalimantan">
+                  <option value="Samarinda">📍 Samarinda</option>
+                  <option value="Balikpapan">📍 Balikpapan</option>
+                  <option value="Pontianak">📍 Pontianak</option>
+                  <option value="Banjarmasin">📍 Banjarmasin</option>
+                </optgroup>
+                <optgroup label="Sulawesi & Nusa Tenggara">
+                  <option value="Makassar">📍 Makassar</option>
+                  <option value="Manado">📍 Manado</option>
+                  <option value="Lombok">📍 Lombok / Mataram</option>
+                </optgroup>
+                <optgroup label="Papua & Maluku">
+                  <option value="Jayapura">📍 Jayapura</option>
+                  <option value="Ambon">📍 Ambon</option>
+                </optgroup>
+              </select>
+
+              <div class="map-tabs" id="mapTabs">
+                <button class="map-tab active" data-tab="all">Semua</button>
+                <button class="map-tab" data-tab="wfc">WFC Cozy</button>
+                <button class="map-tab" data-tab="gem">Hidden Gem</button>
+                <button class="map-tab" data-tab="thrift">Thrifting</button>
+              </div>
+            </div>
+
+            <!-- Real Places List -->
+            <ul class="place-list real-place-list" id="placeList">
+              <!-- Dynamically rendered by script.js -->
+            </ul>
+
+            <!-- Add Review Form -->
+            <form id="addReviewForm" class="mini-form review-form" style="margin-top: 1.25rem;">
+              <label><strong>➕ Tambahkan Ulasan / Rekomendasi Tempat Asli:</strong></label>
+              <div class="form-grid-2">
+                <input type="text" id="revSpotName" placeholder="Nama Tempat & Kota" required />
+                <select id="revCategory" class="poll-select">
+                  <option value="wfc">💻 WFC Cozy</option>
+                  <option value="gem">☕ Hidden Gem</option>
+                  <option value="thrift">👕 Thrifting Spot</option>
+                </select>
+              </div>
+              <div class="form-grid-2">
+                <input type="text" id="revRating" placeholder="Rating (misal: 4.8)" required />
+                <input type="text" id="revPrice" placeholder="Range Harga (misal: Rp 20k-40k)" required />
+              </div>
+              <textarea id="revComment" rows="2" placeholder="Tuliskan ulasan jujur kamu tentang tempat ini..." required></textarea>
+              <button type="submit" class="button tertiary">⭐ Kirim Ulasan Real Tempat</button>
+            </form>
+          </article>
+
+          <!-- Feature 3: OPEN DIALOGUE -->
+          <article class="feature-card feature-dialogue">
+            <div class="feature-header">
+              <span class="feature-tag">OPEN DIALOGUE</span>
+              <h3>Q&amp;A Anonim 4 Jurusan</h3>
+              <p>Tanyakan apa saja dan kami jawab dari perspektif 4 sudut pandang jurusan berbeda.</p>
+            </div>
+            
+            <form id="openDialogForm" class="mini-form">
+              <label for="anonQuestion">Tulis Pertanyaan Anonim</label>
+              <textarea id="anonQuestion" rows="3" placeholder="Tanya sesuatu tentang kuliah, hangout, atau karir..." required></textarea>
+              <button type="submit" class="button tertiary">💬 Kirim Pertanyaan</button>
+            </form>
+            <div class="widget-output dialog-container" id="dialogList">Memuat pertanyaan...</div>
+          </article>
+
+          <!-- Feature 4: GUESTBOOK -->
+          <article class="feature-card feature-guestbook">
+            <div class="feature-header">
+              <span class="feature-tag">GUESTBOOK</span>
+              <h3>Digital Sticker Board</h3>
+              <p>Pilih emoji stiker favorit dan tempelkan pesan singkat kunjunganmu ke papan kami.</p>
+            </div>
+            
+            <form id="guestStickerForm" class="mini-form">
+              <label>Pilih Emoji Stiker:</label>
+              <div class="sticker-picker" id="stickerPicker">
+                <button type="button" class="sticker-opt active" data-emoji="🚀">🚀</button>
+                <button type="button" class="sticker-opt" data-emoji="✨">✨</button>
+                <button type="button" class="sticker-opt" data-emoji="☕">☕</button>
+                <button type="button" class="sticker-opt" data-emoji="💻">💻</button>
+                <button type="button" class="sticker-opt" data-emoji="💊">💊</button>
+                <button type="button" class="sticker-opt" data-emoji="📚">📚</button>
+                <button type="button" class="sticker-opt" data-emoji="🎨">🎨</button>
+                <button type="button" class="sticker-opt" data-emoji="🌙">🌙</button>
+                <button type="button" class="sticker-opt" data-emoji="🔥">🔥</button>
+              </div>
+
+              <div class="form-grid-2">
+                <div>
+                  <label for="stickerName">Nama / Panggilan</label>
+                  <input type="text" id="stickerName" placeholder="Nama atau Anonim" />
+                </div>
+                <div>
+                  <label for="stickerMessage">Pesan Singkat</label>
+                  <input type="text" id="stickerMessage" placeholder="Pesan singkat jejak..." required />
+                </div>
+              </div>
+
+              <button type="submit" class="button tertiary">📌 Tempel Stiker</button>
+            </form>
+
+            <div class="widget-output guestbook-container" id="guestbookEntries">Memuat stiker...</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spot Vault / Circle Archive Section -->
+    <section id="vault" class="section vault-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">DIGITAL ALBUM &amp; SPOT ARCHIVE</p>
+          <h2>Spot Vault — Buku Album Digital</h2>
+          <p>Buka halaman album untuk melihat foto, ulasan, &amp; momen kenangan tempat yang pernah kami kunjungi.</p>
+        </div>
+
+        <!-- Interactive Digital Album Book Viewer -->
+        <div class="spot-book-wrapper">
+          <div class="book-controls">
+            <button id="prevPageBtn" class="button tertiary mini-btn">Prev Page</button>
+            <span id="pageIndicator" class="page-indicator">Halaman 1 dari 3</span>
+            <button id="nextPageBtn" class="button tertiary mini-btn">Next Page</button>
+          </div>
+
+          <div class="album-book-card" id="albumBook">
+            <!-- Rendered dynamically by script.js -->
+          </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 3.5rem; text-align: left;">
+          <p class="eyebrow">ALL ARCHIVED SPOTS</p>
+          <h3 style="color: var(--amber-light); font-size: 1.5rem; margin: 0;">Koleksi Semua Lembaran Tempat</h3>
+        </div>
+
+        <!-- Grid View of All Archived Entries -->
+        <div class="memory-grid" id="memoryGrid" style="margin-top: 1.2rem;">
+          <!-- Dynamically rendered by script.js -->
+        </div>
+
+        <!-- Form Add New Spot Log Entry with File Drop -->
+        <div class="add-memory-box" style="margin-top: 2.5rem;">
+          <form id="addMemoryForm" class="mini-form memory-form">
+            <h3 style="margin: 0 0 0.4rem; color: var(--amber-light); font-size: 1.25rem;">📸 Tambah Lembaran Tempat Baru (Upload Foto File)</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin: 0 0 1rem;">Upload foto tempat langsung dari galeri HP/PC kalian dan tuliskan cerita ulasannya!</p>
+
+            <div class="form-grid-2">
+              <div>
+                <label for="memPlace">Nama Tempat &amp; Kota</label>
+                <input type="text" id="memPlace" placeholder="misal: One Eighty Coffee, Bandung" required />
+              </div>
+              <div>
+                <label for="memDate">Tanggal Kunjungan</label>
+                <input type="date" id="memDate" required />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div>
+                <label for="memAttendees">Anggota yang Hadir</label>
+                <input type="text" id="memAttendees" placeholder="misal: Full Squad " required />
+              </div>
+              <div>
+                <label for="memRating">Vibe Rating / Score</label>
+                <select id="memRating" class="poll-select">
+                  <option value="⭐⭐⭐⭐⭐ (5/5 Peak Vibe)">⭐⭐⭐⭐⭐ (5/5 Peak Vibe)</option>
+                  <option value="⭐⭐⭐⭐ (4/5 Solid Spot)">⭐⭐⭐⭐ (4/5 Solid Spot)</option>
+                  <option value="⭐⭐⭐ (3/5 Chill Enough)">⭐⭐⭐ (3/5 Chill Enough)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Direct File Drop / Upload Input Zone -->
+            <div>
+              <label>📸 Drop / Upload Foto Tempat:</label>
+              <div class="drop-zone" id="photoDropZone">
+                <input type="file" id="memPhotoFile" accept="image/*" style="display: none;" />
+                <span class="drop-icon">📁</span>
+                <span class="drop-text" id="dropText">Drag &amp; Drop foto di sini, atau <strong>Klik untuk Upload Foto dari HP/PC</strong></span>
+                <div id="photoPreviewWrap" style="display: none; margin-top: 0.8rem; text-align: center;">
+                  <img id="photoPreviewImg" src="" alt="Preview Foto" style="max-height: 180px; border-radius: var(--radius-sm); border: 2px solid var(--amber);" />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="memStory">Review &amp; Catatan Kenangan</label>
+              <textarea id="memStory" rows="3" placeholder="Tuliskan ulasan jujur, moment unik, atau kenangan pas di tempat ini..." required></textarea>
+            </div>
+
+            <button type="submit" class="button tertiary">📖 Simpan ke Album Digital</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="section contact-section">
+      <div class="container contact-layout">
+        <div class="contact-copy">
+          <p class="eyebrow">Reach Out</p>
+          <h2>Butuh kolaborasi atau punya ide baru?</h2>
+          <p>Kirim pesan langsung ke Circle Kita. Kami terbuka untuk diskusi project, event kampus, atau ide nongkrong bareng.</p>
+
+          <div class="contact-info-badges">
+            <div class="info-badge-item">
+              <span class="info-icon">📧</span>
+              <div>
+                <strong>Email Circle</strong>
+                <span>j.kuproyyyy@gmail.com</span>
+              </div>
+            </div>
+            <div class="info-badge-item">
+              <span class="info-icon">📍</span>
+              <div>
+                <strong>Basecamp</strong>
+                <span>Sragen</span>
+              </div>
+            </div>
+            <div class="info-badge-item">
+              <span class="info-icon">⚡</span>
+              <div>
+                <strong>Response Rate</strong>
+                <span>Cepat pas megang HP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email Kontak</label>
+            <input type="email" id="email" name="email" placeholder="email@contoh.com" required />
+          </div>
+          <div class="form-row">
+            <label for="message">Pesan / Ide Kolaborasi</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tuliskan ide atau pertanyaan Anda di sini..." required></textarea>
+          </div>
+          <button type="submit" class="button primary block-btn">📩 Kirim Pesan</button>
+          <div class="form-response" id="formResponse" style="display: none;"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="brand"><span class="brand-accent">j.met</span>kuproyy</a>
+          <p class="footer-tagline">Bukan web formal karena ini cuma platform digital berempat yang seru, kalcer, dan update.</p>
+          <!-- Circle Social Media Links -->
+          <div class="footer-socmed">
+            <!-- GANTI: link sosmed circle (bukan per-anggota) -->
+            <a href="https://instagram.com/j.metkuproyy?utm_source=qr" target="_blank" rel="noopener" class="footer-soc-btn" title="Instagram Circle 4">📷</a>
+            <a href="https://tiktok.com/@j.metkuproyyy?_r=1&_t=ZS-98namaB8Oqj" target="_blank" rel="noopener" class="footer-soc-btn" title="TikTok Circle 4">🎵</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-nav-col">
+            <span class="footer-col-title">Navigasi</span>
+            <a href="#home">Beranda</a>
+            <a href="#about">Us</a>
+            <a href="#circle">Widget Crew</a>
+            <a href="#features">Fitur Publik</a>
+            <a href="#vault">Spot Vault</a>
+            <a href="#kontak">Kontak</a>
+          </div>
+          <div class="footer-nav-col">
+            <span class="footer-col-title">Fitur</span>
+            <a href="#circle">� Spin Spot</a>
+            <a href="#circle">🎴 Deep Talk</a>
+            <a href="#features">🗺️ Urban Map</a>
+            <a href="#features">💸 Calc Share</a>
+            <a href="#vault">📖 Spot Vault</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 j.metkuproyy</p>
+        <p>Dibuat dengan ❤️ untuk semuanya, kolaborasi, &amp; archive digital Indonesia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
